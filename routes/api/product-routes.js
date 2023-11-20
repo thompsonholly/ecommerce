@@ -6,7 +6,7 @@ const { Product, Category, Tag, ProductTag } = require('../../models');
 // get all products  
 // find all products
 // be sure to include its associated Category and Tag data
-router.get('/api/products', async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const productData = await Product.findByPk(req.params.id, {
       include: [{ model: ProductTag, through: Tag, as: 'tag_id' }]
@@ -45,12 +45,15 @@ router.get('/:id', async (req, res) => {
 // create new product ??
 router.post('/', async (req, res) => {
   try {
-    const productData = await Product.create(req.body)
-    //  where: {
-    //     product_name: "",
-    //     price: 
-    //   }
+    const productData = await Product.create(req.body);
+    res.status(200).json(productData);
+  } catch (err) {
+    res.status(400).json(err);
   }
+  //  where: {
+  //     product_name: "",
+  //     price: 
+  //   }
 });
 /* req.body should look like this...
   {
@@ -80,7 +83,7 @@ Product.create(req.body)
     console.log(err);
     res.status(400).json(err);
   });
-});
+
 
 // update product
 router.put('/:id', (req, res) => {

@@ -37,30 +37,26 @@ router.get('/:id', async (req, res) => {
 });
 
 // create a new category
-router.post('/', async (req, res) => {
-  try {
-    const categoryData = await Category.create(req.body);
-    res.status(200).json(categoryData);
-  } catch (err) {
-    res.status(400).json(err);
-  }
+router.post('/', (req, res) => {
+  Category.create(req.body)
+    .then((newCategory) => {
+      res.status(200).json(newCategory)
+    })
+    .catch((err) => res.status(500).json(err))
 });
+
 
 // update a category by its `id` value
 router.put('/:id', (req, res) => {
 
   Category.update(
-    {
-      id: req.body.id,
-      category_name: req.body.category_name
-    },
+    req.body,
     {
       where: {
         id: req.params.id,
-        category_name: req.params.id
       },
-    }
-  )
+    })
+
     .then((updateCategory) => {
       res.status(200).json(updateCategory)
     })
@@ -77,7 +73,7 @@ router.delete('/:id', (req, res) => {
     },
   })
     .then((deleteCategory) => {
-      res.status(404).json(deleteCategory)
+      res.status(200).json(deleteCategory)
     })
     .catch((err) => res.status(500).json(err));
 

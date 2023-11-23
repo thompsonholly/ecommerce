@@ -29,14 +29,6 @@ Product.init(
       }
     },
 
-
-    // * `price`
-
-    // * Decimal.
-
-    //     * Doesn't allow null values.
-
-    // * Validates that the value is a decimal.
     stock: {
       type: DataTypes.INTEGER,
       allowNull: false,

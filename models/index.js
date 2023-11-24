@@ -10,7 +10,7 @@ Product.belongsTo(Category, {
 });
 // Categories have many Products ?? Not sure if this is correct
 Category.hasMany(Product, {
-  foreignKey: "id"
+  foreignKey: "category_id"
 })
 // Products belongToMany Tags (through ProductTag)
 Product.belongsToMany(Tag, {
@@ -18,7 +18,9 @@ Product.belongsToMany(Tag, {
 })
 // Tags belongToMany Products (through ProductTag)
 Tag.belongsToMany(Product, {
-  through: "product_tag"
+  through: {
+    model: ProductTag
+  }
 })
 
 module.exports = {

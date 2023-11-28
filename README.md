@@ -18,5 +18,7 @@ https://github.com/thompsonholly/ecommerce
 
 ## Video Walkthrough
 
+https://watch.screencastify.com/v/fQW1rvvs1PQmwMUhHfZv
+
 
 
